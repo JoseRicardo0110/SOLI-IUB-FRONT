@@ -1,5 +1,6 @@
 
 import {Navbar, Nav, Container, Image} from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 export default function navbar() {
   return (
@@ -12,8 +13,10 @@ export default function navbar() {
           <Nav className="me-auto">
           </Nav>
           <Nav className="h4">
-            <Nav.Link href="/home">Inicio</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
+            
+            
+            <Nav.Link><Link to="/home">Inicio</Link></Nav.Link>
+            <Nav.Link><Link to="/login">Login</Link></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
