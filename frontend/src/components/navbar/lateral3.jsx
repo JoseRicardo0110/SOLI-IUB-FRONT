@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-const url = "http://127.0.0.1:8000";
+const url = "https://soli-iub-fastapi.onrender.com";
 export default function Lateral3() {
   const [users, setUsers] = useState([]);
 
