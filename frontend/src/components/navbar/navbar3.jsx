@@ -23,9 +23,10 @@ export default function Navbar3() {
               </OverlayTrigger> */}
 
               
-              <Nav.Link href="/home">
-                Inicio
+              <Nav.Link>
+              <Link to="/home">Login</Link>
               </Nav.Link>
+              
             </Nav>
           </Navbar.Collapse>
         </Container>
