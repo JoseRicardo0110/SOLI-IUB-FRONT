@@ -9,7 +9,7 @@ import { createTheme } from "@mui/material/styles";
 import * as API from "../../ruta";
 import DownloadIcon from '@mui/icons-material/GetApp';
 import ViewColumnIcon from '@mui/icons-material/DynamicFeed';
-const url = "http://127.0.0.1:8000";
+const url = "https://soli-iub-fastapi.onrender.com";
 const muiCache = createCache({
   key: "mui-datatables",
   prepend: true

@@ -6,7 +6,7 @@ import Table8 from "../../components/table/table8";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Lateral3 from "../../components/navbar/lateral3";
-const url = "http://127.0.0.1:8000";
+const url = "https://soli-iub-fastapi.onrender.com";
 
 
 export default function EstudianteVeEstadiSolicitud() {
