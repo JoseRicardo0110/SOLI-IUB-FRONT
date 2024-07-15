@@ -12,6 +12,8 @@ export default function Ver_roles() {
   const [modules, setModules] = useState([]);
   const [allModules, setAllModules] = useState([]);
   const [selectedModule, setSelectedModule] = useState("");
+  const [newRoleName, setNewRoleName] = useState("");
+  const [newRoleDescription, setNewRoleDescription] = useState("");
 
   const getRoles = async () => {
     try {
@@ -72,6 +74,22 @@ export default function Ver_roles() {
     }
   };
 
+  const createRole = async () => {
+    console.log("Creating role with name:", newRoleName, "and description:", newRoleDescription); // Debugging line
+    try {
+      const response = await axios.post(`${url}/create_rol`, {
+        nombre: newRoleName,
+        descripcion: newRoleDescription
+      });
+      console.log(response.data); // Debugging line
+      setNewRoleName(""); // Reset the input fields
+      setNewRoleDescription("");
+      getRoles(); // Refresh the list of roles
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getRoles();
     getAllModules();
@@ -95,6 +113,16 @@ export default function Ver_roles() {
         </div>
         <div className="ld">
           <div className="row">
+            <div className="col-12 mb-3">
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#addRoleModal"
+              >
+                Agregar Nuevo Rol
+              </button>
+            </div>
             {users.map((user) => (
               <div key={user.IdRol} className="col-4">
                 <div className="card carta1 ms-4 mb-2">
@@ -119,7 +147,7 @@ export default function Ver_roles() {
           </div>
         </div>
 
-        {/* Modal */}
+        {/* Modal para ver modulos permitidos */}
         <div
           className="modal fade"
           id="exampleModal"
@@ -145,10 +173,10 @@ export default function Ver_roles() {
                 <ul id="lista-modulos">
                   {modules.map((modulo) => (
                     <li key={modulo.id}>
-                      {modulo.modulos}{" "}
+                      {modulo.modulo}{" "}
                       <button 
                         className="btn btn-danger btn-sm" 
-                        onClick={() => handleRemoveModule(modulo.modulo)}
+                        onClick={() => handleRemoveModule(modulo.id)}
                       >
                         Quitar
                       </button>
@@ -174,6 +202,65 @@ export default function Ver_roles() {
                     Añadir
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Modal para agregar nuevo rol */}
+        <div
+          className="modal fade"
+          id="addRoleModal"
+          tabIndex="-1"
+          aria-labelledby="addRoleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="addRoleModalLabel">Agregar Nuevo Rol</h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <div className="mb-3">
+                  <label className="form-label">Nombre del Rol</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={newRoleName}
+                    onChange={(e) => setNewRoleName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Descripción del Rol</label>
+                  <textarea
+                    className="form-control"
+                    value={newRoleDescription}
+                    onChange={(e) => setNewRoleDescription(e.target.value)}
+                  ></textarea>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={createRole}
+                  data-bs-dismiss="modal"
+                >
+                  Crear Rol
+                </button>
               </div>
             </div>
           </div>
