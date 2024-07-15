@@ -11,6 +11,7 @@ export default function Ver_roles() {
   const [selectedRole, setSelectedRole] = useState(null);
   const [modules, setModules] = useState([]);
   const [allModules, setAllModules] = useState([]);
+  const [selectedModule, setSelectedModule] = useState("");
 
   const getRoles = async () => {
     try {
@@ -43,9 +44,11 @@ export default function Ver_roles() {
     }
   };
 
-  const addModuleToRole = async (moduleId) => {
+  const addModuleToRole = async () => {
+    if (!selectedModule) return;
     try {
-      await axios.post(`${url}/add_modulo_a_rol`, { idrol: selectedRole, idmodulo: moduleId });
+      await axios.post(`${url}/add_modulo_a_rol`, { idrol: selectedRole, idmodulo: selectedModule });
+      setSelectedModule(""); // Reset the selected module
       getModules(selectedRole); // Refresh the list of modules for the selected role
     } catch (error) {
       console.error(error);
@@ -53,8 +56,16 @@ export default function Ver_roles() {
   };
 
   const removeModuleFromRole = async (moduleId) => {
+    console.log("Removing module with ID:", moduleId); // Debugging line
     try {
-      await axios.delete(`${url}/remove_modulo_de_rol`, { data: { idrol: selectedRole, idmodulo: moduleId } });
+      await axios({
+        method: 'delete',
+        url: `${url}/remove_modulo_de_rol`,
+        data: {
+          idrol: selectedRole,
+          idmodulo: moduleId
+        }
+      });
       getModules(selectedRole); // Refresh the list of modules for the selected role
     } catch (error) {
       console.error(error);
@@ -69,6 +80,10 @@ export default function Ver_roles() {
   const clearModules = () => {
     setModules([]);
     setSelectedRole(null);
+  };
+
+  const handleRemoveModule = (moduleId) => {
+    removeModuleFromRole(moduleId);
   };
 
   return (
@@ -131,20 +146,34 @@ export default function Ver_roles() {
                   {modules.map((modulo) => (
                     <li key={modulo.id}>
                       {modulo.modulos}{" "}
-                      <button onClick={() => removeModuleFromRole(modulo.id)}>Quitar</button>
+                      <button 
+                        className="btn btn-danger btn-sm" 
+                        onClick={() => handleRemoveModule(modulo.modulo)}
+                      >
+                        Quitar
+                      </button>
                     </li>
                   ))}
                 </ul>
                 <hr />
                 <h5>Agregar modulo</h5>
-                <select onChange={(e) => addModuleToRole(e.target.value)}>
-                  <option value="">Seleccione un modulo</option>
-                  {allModules.map((modulo) => (
-                    <option key={modulo.id} value={modulo.id}>
-                      {modulo.modulo}
-                    </option>
-                  ))}
-                </select>
+                <div className="d-flex">
+                  <select 
+                    className="form-select me-2"
+                    value={selectedModule}
+                    onChange={(e) => setSelectedModule(e.target.value)}
+                  >
+                    <option value="">Seleccione un modulo</option>
+                    {allModules.map((modulo) => (
+                      <option key={modulo.id} value={modulo.id}>
+                        {modulo.modulo}
+                      </option>
+                    ))}
+                  </select>
+                  <button className="btn btn-primary" onClick={addModuleToRole}>
+                    Añadir
+                  </button>
+                </div>
               </div>
             </div>
           </div>
