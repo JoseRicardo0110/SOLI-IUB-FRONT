@@ -12,11 +12,11 @@ export default function navbar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
           </Nav>
-          <Nav className="h4">
+          <Nav className="h4 ">
             
             
-            <Nav.Link><Link to="/home">Inicio</Link></Nav.Link>
-            <Nav.Link><Link to="/login">Login</Link></Nav.Link>
+            
+            <Nav.Link><Link className="nav-link text-dark" to="/login">Login</Link></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

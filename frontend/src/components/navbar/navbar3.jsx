@@ -25,7 +25,7 @@ export default function Navbar3() {
 
               
               <Nav.Link>
-              <Link to="/home">Login</Link>
+              <Link className="nav-link text-dark" to="/home">Inicio</Link>
               </Nav.Link>
               
             </Nav>
