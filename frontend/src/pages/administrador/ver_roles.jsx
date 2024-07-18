@@ -173,7 +173,7 @@ export default function Ver_roles() {
                 <ul id="lista-modulos">
                   {modules.map((modulo) => (
                     <li key={modulo.id}>
-                      {modulo.modulo}{" "}
+                      {modulo.modulos}{" "}
                       <button 
                         className="btn btn-danger btn-sm" 
                         onClick={() => handleRemoveModule(modulo.id)}
