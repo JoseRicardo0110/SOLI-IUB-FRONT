@@ -176,7 +176,7 @@ export default function Ver_roles() {
                       {modulo.modulos}{" "}
                       <button 
                         className="btn btn-danger btn-sm" 
-                        onClick={() => handleRemoveModule(modulo.id)}
+                        onClick={() => handleRemoveModule(modulo.modulo)}
                       >
                         Quitar
                       </button>
