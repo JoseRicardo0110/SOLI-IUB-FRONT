@@ -90,6 +90,15 @@ export default function Ver_roles() {
     }
   };
 
+  const deleteRole = async (roleId) => {
+    try {
+      await axios.delete(`${url}/delete_rol`, { data: { id: roleId } });
+      getRoles(); // Refresh the list of roles
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getRoles();
     getAllModules();
@@ -140,6 +149,13 @@ export default function Ver_roles() {
                     >
                       Ver modulos permitidos
                     </button>
+                    <button
+                      type="button"
+                      className="btn btn-danger m-2"
+                      onClick={() => deleteRole(user.IdRol)}
+                    >
+                      Eliminar Rol
+                    </button>
                   </div>
                 </div>
               </div>
@@ -175,7 +191,7 @@ export default function Ver_roles() {
                     <li key={modulo.id}>
                       {modulo.modulos}{" "}
                       <button 
-                        className="btn btn-danger btn-sm" 
+                        className="btn btn-danger btn-sm ms-2 mb-1" 
                         onClick={() => handleRemoveModule(modulo.modulo)}
                       >
                         Quitar
