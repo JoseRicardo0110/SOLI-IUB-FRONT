@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MUIDataTable from "mui-datatables";
@@ -17,9 +16,10 @@ const muiCache = createCache({
 
 
 function Table9() {
+  const [roles, setRoles] = useState([]);
+  const [users, setUsers] = useState([]);
 
-
-  const   handlelogin= async() => {
+  const handlelogin = async() => {
     var IdArea = parseInt(document.getElementById("user_IdArea").value);
     var usuario = document.getElementById("user_usuario").value;
     var nombre = document.getElementById("user_nombre").value;
@@ -28,11 +28,11 @@ function Table9() {
     var apellido = document.getElementById("user_apellido").value;
     var telefono = document.getElementById("user_telefono").value;
     var correo = document.getElementById("user_correo").value;
-    console.log("El usuaio es :",documento);
-    axios({
-      method: "post",
-      url: `${url}/create_user`,
-      data: {
+    var rol = parseInt(document.getElementById("user_rol").value);
+    console.log("El usuario es:", documento);
+
+    try {
+      await axios.post(`${url}/create_user`, {
         IdArea: IdArea,
         usuario: usuario,
         contrasena: contrasena,
@@ -40,18 +40,25 @@ function Table9() {
         apellido: apellido,
         documento: documento,
         telefono: telefono,
-        correo: correo
-      },
-    });
-    
-    alert('Haz creado al usuario: '+usuario+'\ncontraseña: '+contrasena+'\nNombre : '+nombre+'\nApellido : '+apellido+'\nDocumento : '+documento+'\nTelefono : '+telefono);
-    window.location.href = window.location.href;
+        correo: correo,
+        rol: rol
+      });
 
+      alert('Haz creado al usuario: ' + usuario + '\ncontraseña: ' + contrasena + '\nNombre: ' + nombre + '\nApellido: ' + apellido + '\nDocumento: ' + documento + '\nTelefono: ' + telefono);
+      window.location.href = window.location.href;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  
-
-  const [users, setUsers] = useState([]);
+  const getRoles = async () => {
+    try {
+      const response = await axios.get(`${url}/get_Roles`);
+      setRoles(response.data.resultado);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const get_SolicitudesSinAsignarr = async () => {
     try {
@@ -66,6 +73,7 @@ function Table9() {
   };
 
   useEffect(() => {
+    getRoles();
     get_SolicitudesSinAsignarr();
   }, []);
 
@@ -94,6 +102,10 @@ function Table9() {
     {
       name: "teléfono",
       label:"Telefono"
+    },
+    {
+      name: "nombrerol",
+      label:"Rol"
     }
   ];
 
@@ -182,6 +194,13 @@ function Table9() {
                   type="text"
                   id="user_correo"
                 /> 
+                <label class="form-label text-primary"><b>Rol</b></label>
+                                        <select class="form-select" id="user_rol">
+                                            <option selected>Selecciona el rol</option>
+                                            {roles.map((role) => (
+                                                <option key={role.IdRol} value={role.IdRol}>{role.NombreRol}</option>
+                                            ))}
+                                        </select>
                   </div>
                 </div>
               </div>
