@@ -4,7 +4,7 @@ import { sesion } from "../../sesion";
 import { useState, useEffect } from 'react';
 import { gapi } from "gapi-script";
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';  // Importar correctamente
 
 export default function Formulario1() {
   const clientID = "1074902750482-3n5iuj8ra8f138gcs6827e3peg7fc8n.apps.googleusercontent.com";
@@ -13,7 +13,7 @@ export default function Formulario1() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const onSuccess = (response) => {
-    const profile = jwtDecode(response.credential);
+    const profile = jwtDecode(response.credential);  // Decodificar el token correctamente
     setUser(profile);
     document.getElementsByClassName("btn")[0].hidden = true;
 
