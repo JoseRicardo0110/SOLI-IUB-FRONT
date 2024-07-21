@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { sesion } from "../../sesion";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GoogleOAuthProvider, GoogleLogin, googleLogout } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 
