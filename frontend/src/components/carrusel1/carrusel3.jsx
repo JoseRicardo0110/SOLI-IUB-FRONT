@@ -8,7 +8,7 @@ export default function Carrusel3() {
       <Carousel.Item>
         <Image src="../picture/carrusel-9.jpg" className="d-block" fluid/>
         <Carousel.Caption>
-          <h3>Estamos aui para ayudar a uestros estudiantes</h3>
+          <h3>Estamos aqui para ayudar a nuestros estudiantes</h3>
           <p>Los lideres academicos ahora pueden responder solicitudes en el menor tiempo posible</p>
         </Carousel.Caption>
       </Carousel.Item>

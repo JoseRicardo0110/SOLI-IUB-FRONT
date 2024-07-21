@@ -19,7 +19,7 @@ export default function Formulario1() {
           </div>
           <form class="posicion_imput2 ">
             <div class="  tamano_imput posicion_imput1 ">
-              <label class="form-label text-light">Usuario</label>
+              <label class="form-label text-light">CORREO</label>
               <input
                 class="form-control  bg-light"
                 type="text"
@@ -28,7 +28,7 @@ export default function Formulario1() {
               />
             </div>
             <div class=" mt-3 tamano_imput">
-              <label class="form-label text-light">Contraseña</label>
+              <label class="form-label text-light">CONTRASEÑA</label>
               <input
                 class="form-control bg-light"
                 type="password"

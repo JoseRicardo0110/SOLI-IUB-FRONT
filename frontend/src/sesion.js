@@ -11,23 +11,8 @@ export async function sesion(user_usuario, user_contrasena, navigate) {
     var Rol= await API.RolUsuario(idusuario);
     
     console.log(Rol);
-    switch (Rol){
-      case 1: 
-        navigate("/lider");
-        break;
-      case 2:
-        navigate("/estudianteCreaSoli");
-        break;
-      case 3:
-        navigate("/lider");
-        break;
-      case 4:
-        navigate("/lider");
-        break;
-      default:
-        navigate("/NoPage");
-        break;
-    } 
+    navigate("/lider");
+   
   } catch (error) {
     alert(error.message);
   }

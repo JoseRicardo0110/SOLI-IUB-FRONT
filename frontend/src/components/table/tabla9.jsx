@@ -80,7 +80,7 @@ function Table9() {
   //tomo informacion de la base de datos y la almaceno en el arreglo 'users'
   const columns = [
     {
-      name: "usuario",
+      name: "correo",
       label: "Usuario",
     },
     {
