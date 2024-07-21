@@ -86,10 +86,7 @@ export default function Formulario1() {
               </div>
               {loggedIn && (
                 <div className="profile">
-                  <h3 class="text-light ms-3" >Hola {user.name}</h3>
-                  <button class="btn btn-light w-100 mt-4 fw-semibold shadow-sm" onClick={handleLogout} className="btn btn-secondary">
-                    Espera un momento mas 
-                  </button>
+                  <h3 class="text-light ms-2" >Bienvenido {user.name}</h3>
                 </div>
               )}
             </form>
