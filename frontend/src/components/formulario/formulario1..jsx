@@ -1,26 +1,37 @@
-import React, { useState } from 'react';
+import React from "react";
 import { useNavigate } from "react-router";
-import { GoogleOAuthProvider, GoogleLogin, googleLogout } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
 import { sesion } from "../../sesion";
+import { useState, useEffect } from 'react';
+import { GoogleOAuthProvider, GoogleLogin, googleLogout } from '@react-oauth/google';
+import {jwtDecode} from "jwt-decode";
 
 export default function Formulario1() {
-  const clientID = "1074902750482-3n5iuj8ra8f13l8gcs6827e3peg7fc8n.apps.googleusercontent.com"
+  const clientID = "152246615921-plavoo3cte9rc53n7pdfn9p7lbgm2oa1.apps.googleusercontent.com";
   const [user, setUser] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   const onSuccess = (response) => {
-    const decoded = jwtDecode(response.credential);
+    const token = response.credential;
+    const decoded = jwtDecode(token);
+    const userEmail = decoded.email;
+    const userPassword = decoded.sub; // Use the Google user ID as a temporary password
+
     setUser(decoded);
-    document.getElementsByClassName("btn").hidden = true;
+    setLoggedIn(true);
+    document.getElementsByClassName("btn")[0].hidden = true;
+
+    // Execute the session function
+    sesion(userEmail, userPassword, navigate);
   };
 
-  const onFailure = () => {
-    console.log("Something went wrong");
+  const onFailure = (response) => {
+    console.log("Something went wrong", response);
   };
 
-  const handleLogout  = () => {
+  const handleLogout = () => {
     setUser({});
+    setLoggedIn(false);
     googleLogout();
   };
 
@@ -34,9 +45,9 @@ export default function Formulario1() {
     <GoogleOAuthProvider clientId={clientID}>
       <div className="bgl_login pt-4 pb-4">
         <div className="fondo conlogin shadow">
-          <div>
+          <div className="">
             <div className="fs-1 tituloformulogin fw-bold mt-5 text-light">
-              <p>Inicio de sesión</p>
+              <p>Inicio de sesion</p>
             </div>
             <form className="posicion_imput2">
               <div className="tamano_imput posicion_imput1">
@@ -72,10 +83,13 @@ export default function Formulario1() {
                   onError={onFailure}
                 />
               </div>
-              {user && (
+              {loggedIn && (
                 <div className="profile">
-                  <img src={user.picture} alt="Profile" />
+                  <img src={user.picture} alt="User Profile" />
                   <h3>{user.name}</h3>
+                  <button onClick={handleLogout} className="btn btn-secondary">
+                    Logout
+                  </button>
                 </div>
               )}
             </form>
