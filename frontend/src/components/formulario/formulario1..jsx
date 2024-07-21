@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { sesion } from "../../sesion";
 import { useState } from 'react';
 import { GoogleOAuthProvider, GoogleLogin, googleLogout } from '@react-oauth/google';
-import { decode } from "jwt-decode";
+import jwt_decode from "jwt-decode";
 
 export default function Formulario1() {
   const clientID = "152246615921-plavoo3cte9rc53n7pdfn9p7lbgm2oa1.apps.googleusercontent.com";
@@ -13,7 +13,7 @@ export default function Formulario1() {
 
   const onSuccess = (response) => {
     const token = response.credential;
-    const decoded = decode(token);
+    const decoded = jwt_decode(token);
     const userEmail = decoded.email;
     const userPassword = decoded.sub; // Use the Google user ID as a temporary password
 
