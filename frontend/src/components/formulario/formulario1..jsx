@@ -2,25 +2,17 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { sesion } from "../../sesion";
 import { useState, useEffect } from 'react';
-import { gapi } from "gapi-script";
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';  // Importar correctamente
 
 export default function Formulario1() {
-  const clientID = "1074902750482-3n5iuj8ra8f138gcs6827e3peg7fc8n.apps.googleusercontent.com";
-
+  const clientID = "1074902750482-3n5iuj8ra8f13l8gcs6827e3peg7fc8n.apps.googleusercontent.com";
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
 
   const onSuccess = (response) => {
-    const profile = jwtDecode(response.credential);  // Decodificar el token correctamente
-    setUser(profile);
+    setUser(response.profileObj);
+    setLoggedIn(true);
     document.getElementsByClassName("btn")[0].hidden = true;
-
-    // Extraer correo y contraseña del perfil y ejecutar sesión
-    const user_usuario = profile.email;
-    const user_contrasena = 'google_oauth_password';  // Debes definir cómo manejar la contraseña para usuarios de Google OAuth
-    sesion(user_usuario, user_contrasena, navigate);
   };
 
   const onFailure = (response) => {
@@ -29,19 +21,10 @@ export default function Formulario1() {
 
   const handleLogout = () => {
     setUser({});
+    setLoggedIn(false);
   };
 
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: clientID,
-      });
-    }
-    gapi.load("client:auth2", start);
-  }, []);
-
   const navigate = useNavigate();
-
   const handlelogin = () => {
     var user_usuario = document.getElementById("user_usuario").value;
     var user_contrasena = document.getElementById("user_contrasena").value;
@@ -90,10 +73,13 @@ export default function Formulario1() {
                   onError={onFailure}
                 />
               </div>
-              {user && (
+              {loggedIn && (
                 <div className="profile">
-                  <img src={user.picture} alt="profile" />
+                  <img src={user.imageUrl} alt="User Profile" />
                   <h3>{user.name}</h3>
+                  <button onClick={handleLogout} className="btn btn-secondary">
+                    Logout
+                  </button>
                 </div>
               )}
             </form>
