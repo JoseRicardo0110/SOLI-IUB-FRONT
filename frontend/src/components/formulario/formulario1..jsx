@@ -20,7 +20,8 @@ export default function Formulario1() {
     setUser(decoded);
     setLoggedIn(true);
     document.getElementsByClassName("btn")[0].hidden = true;
-
+    console.log(userEmail);
+    console.log(userPassword);
     // Execute the session function
     sesion(userEmail, userPassword, navigate);
   };
