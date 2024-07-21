@@ -4,17 +4,18 @@ import { sesion } from "../../sesion";
 import { useState, useEffect } from 'react';
 import { gapi } from "gapi-script";
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import jwtDecode from 'jwt-decode';
 
 export default function Formulario1() {
-  const clientID = "1074902750482-3n5iuj8ra8f138gcs6827e3peg7fc8n.apps.googleusercontent.com";  // Asegúrate de usar el ID de cliente correcto
+  const clientID = "1074902750482-3n5iuj8ra8f138gcs6827e3peg7fc8n.apps.googleusercontent.com";
 
   const [user, setUser] = useState({});
-  const [loggeIn, setLoggetInfo] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const onSuccess = (response) => {
-    const profile = jwt_decode(response.credential);
+    const profile = jwtDecode(response.credential);
     setUser(profile);
-    document.getElementsByClassName("btn").hidden = true;
+    document.getElementsByClassName("btn")[0].hidden = true;
 
     // Extraer correo y contraseña del perfil y ejecutar sesión
     const user_usuario = profile.email;
