@@ -2,27 +2,24 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { sesion } from "../../sesion";
 import { useState, useEffect } from 'react';
-import { GoogleOAuthProvider, GoogleLogin, googleLogout } from '@react-oauth/google';
-import { jwtDecode } from "jwt-decode";
+import { gapi } from "gapi-script";
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 export default function Formulario1() {
-  const clientID = "1074902750482-3n5iuj8ra8f13l8gcs6827e3peg7fc8n.apps.googleusercontent.com";
+  const clientID = "1074902750482-3n5iuj8ra8f138gcs6827e3peg7fc8n.apps.googleusercontent.com";  // Asegúrate de usar el ID de cliente correcto
+
   const [user, setUser] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
-  const navigate = useNavigate();
+  const [loggeIn, setLoggetInfo] = useState(false);
 
   const onSuccess = (response) => {
-    const token = response.credential;
-    const decoded = jwtDecode(token);
-    const userEmail = decoded.email;
-    const userPassword = decoded.sub; // Use the Google user ID as a temporary password
+    const profile = jwt_decode(response.credential);
+    setUser(profile);
+    document.getElementsByClassName("btn").hidden = true;
 
-    setUser(decoded);
-    setLoggedIn(true);
-    document.getElementsByClassName("btn")[0].hidden = true;
-
-    // Execute the session function
-    sesion(userEmail, userPassword, navigate);
+    // Extraer correo y contraseña del perfil y ejecutar sesión
+    const user_usuario = profile.email;
+    const user_contrasena = 'google_oauth_password';  // Debes definir cómo manejar la contraseña para usuarios de Google OAuth
+    sesion(user_usuario, user_contrasena, navigate);
   };
 
   const onFailure = (response) => {
@@ -31,9 +28,18 @@ export default function Formulario1() {
 
   const handleLogout = () => {
     setUser({});
-    setLoggedIn(false);
-    googleLogout();
   };
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientID,
+      });
+    }
+    gapi.load("client:auth2", start);
+  }, []);
+
+  const navigate = useNavigate();
 
   const handlelogin = () => {
     var user_usuario = document.getElementById("user_usuario").value;
@@ -83,13 +89,10 @@ export default function Formulario1() {
                   onError={onFailure}
                 />
               </div>
-              {loggedIn && (
+              {user && (
                 <div className="profile">
-                  <img src={user.picture} alt="User Profile" />
+                  <img src={user.picture} alt="profile" />
                   <h3>{user.name}</h3>
-                  <button onClick={handleLogout} className="btn btn-secondary">
-                    Logout
-                  </button>
                 </div>
               )}
             </form>

@@ -1,5 +1,11 @@
 {
   "dependencies": {
-    "gapi-script": "^1.2.0"
+    "gapi-script": "^1.2.0",
+    "google-auth-library": "^7.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "5.0.1",
+    "@react-oauth/google": "^1.0.0" 
   }
 }
