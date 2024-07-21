@@ -1,18 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { sesion } from "../../sesion";
-import { useState, useEffect } from 'react';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useState } from 'react';
+import { GoogleOAuthProvider, GoogleLogin, googleLogout } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
 
 export default function Formulario1() {
-  const clientID = "1074902750482-3n5iuj8ra8f13l8gcs6827e3peg7fc8n.apps.googleusercontent.com";
+  const clientID = "152246615921-plavoo3cte9rc53n7pdfn9p7lbgm2oa1.apps.googleusercontent.com";
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const onSuccess = (response) => {
-    setUser(response.profileObj);
+    const token = response.credential;
+    const decoded = jwt_decode(token);
+    const userEmail = decoded.email;
+    const userPassword = decoded.sub; // Use the Google user ID as a temporary password
+
+    setUser(decoded);
     setLoggedIn(true);
     document.getElementsByClassName("btn")[0].hidden = true;
+
+    // Execute the session function
+    sesion(userEmail, userPassword, navigate);
   };
 
   const onFailure = (response) => {
@@ -22,9 +32,9 @@ export default function Formulario1() {
   const handleLogout = () => {
     setUser({});
     setLoggedIn(false);
+    googleLogout();
   };
 
-  const navigate = useNavigate();
   const handlelogin = () => {
     var user_usuario = document.getElementById("user_usuario").value;
     var user_contrasena = document.getElementById("user_contrasena").value;
@@ -75,7 +85,7 @@ export default function Formulario1() {
               </div>
               {loggedIn && (
                 <div className="profile">
-                  <img src={user.imageUrl} alt="User Profile" />
+                  <img src={user.picture} alt="User Profile" />
                   <h3>{user.name}</h3>
                   <button onClick={handleLogout} className="btn btn-secondary">
                     Logout
