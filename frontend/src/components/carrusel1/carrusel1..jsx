@@ -5,13 +5,7 @@ export default function Carrusel1() {
   return (
     <>
       <Carousel>
-      <Carousel.Item>
-        <Image src="../picture/c2.jpg" className="d-block" fluid/>
-        <Carousel.Caption>
-          <h3>Queremos ayudate a lo antes posible</h3>
-          <p>Mediante solicitudes podemos manejar mejor la informacion</p>
-        </Carousel.Caption>
-      </Carousel.Item>
+      
       <Carousel.Item>
         <Image src="../picture/sede-iub.jpeg" className="d-block" fluid/>
         <Carousel.Caption>
