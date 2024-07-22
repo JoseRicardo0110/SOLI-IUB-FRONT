@@ -1,5 +1,5 @@
 // ChatBot.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const ChatBot = () => {
@@ -8,6 +8,7 @@ const ChatBot = () => {
   ]);
   const [input, setInput] = useState('');
   const [isMinimized, setIsMinimized] = useState(true);
+  const chatWindowRef = useRef(null);
 
   const sendMessage = async (text) => {
     const newMessage = { sender: 'user', text };
@@ -36,6 +37,12 @@ const ChatBot = () => {
     }
   };
 
+  useEffect(() => {
+    if (chatWindowRef.current) {
+      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
     <div className={`chat-container ${isMinimized ? 'minimized' : ''}`}>
       <div className="chat-header" onClick={() => setIsMinimized(!isMinimized)}>
@@ -48,7 +55,7 @@ const ChatBot = () => {
       </div>
       {!isMinimized && (
         <>
-          <div className="chat-window">
+          <div className="chat-window" ref={chatWindowRef}>
             {messages.map((msg, index) => (
               <div key={index} className={`message ${msg.sender}`}>
                 {msg.text}
