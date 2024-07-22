@@ -3,6 +3,7 @@ import Footer1 from "../../components/footer/footer";
 import Lateral2 from "../../components/navbar/lateral2";
 import Table1 from "../../components/table/table1";
 import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 export default function EstudianteVeHistorial() {
   return (
@@ -16,6 +17,7 @@ export default function EstudianteVeHistorial() {
             < Table1/>
           </div>
       </div>
+      <ChatBot/>
       <Footer1/>
     </div>
   );

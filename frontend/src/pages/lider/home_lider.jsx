@@ -3,6 +3,7 @@ import Footer1 from "../../components/footer/footer";
 import NavbarPrueba from "../../components/navbar/navbarprueba";
 import Lateral3 from "../../components/navbar/lateral3";
 import Carrusel3 from "../../components/carrusel1/carrusel3";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 export default function Lider() {
 
@@ -40,6 +41,7 @@ export default function Lider() {
         </div>
         
       </div>
+      <ChatBot/>
       <Footer1/>
     </>
   );

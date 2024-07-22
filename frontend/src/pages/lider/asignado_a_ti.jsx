@@ -3,6 +3,7 @@ import Table6 from "../../components/table/table6";
 import NavbarPrueba from "../../components/navbar/navbarprueba";
 import Lateral1 from "../../components/navbar/lateral1";
 import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 
 export default function Asignado_a_ti() {
@@ -18,6 +19,7 @@ export default function Asignado_a_ti() {
                 </div>
             
             </div>
+            <ChatBot/>
             <Footer1/>
         </>
     

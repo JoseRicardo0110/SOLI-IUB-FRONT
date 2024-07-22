@@ -3,6 +3,7 @@ import NavbarPrueba from "../../components/navbar/navbarprueba";
 import Lateral1 from "../../components/navbar/lateral1";
 import Table7 from "../../components/table/table7";
 import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 
 export default function Finalizados_por_ti() {
@@ -18,6 +19,7 @@ export default function Finalizados_por_ti() {
                 </div>
             
             </div>
+            <ChatBot/>
             <Footer1/>
         </>
     

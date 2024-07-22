@@ -104,7 +104,7 @@ function Table1() {
       <CacheProvider value={muiCache}>
       <ThemeProvider theme={createTheme()}>
         <MUIDataTable
-          title={"ACME Employee list"}
+          title={"Historial De Solicitudes"}
           data={users}
           columns={columns}
           options={options}

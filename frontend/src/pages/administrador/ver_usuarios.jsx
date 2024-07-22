@@ -5,6 +5,7 @@ import Footer1 from "../../components/footer/footer";
 import Table9 from "../../components/table/tabla9";
 import NavbarPrueba from "../../components/navbar/navbarprueba";
 import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 
 export default function Ver_usuarios() {
@@ -22,7 +23,7 @@ export default function Ver_usuarios() {
         <div class=" ld ">
           <Table9/>
         </div>
-        
+        <ChatBot/>
       </div>
       <Footer1/>
       </>

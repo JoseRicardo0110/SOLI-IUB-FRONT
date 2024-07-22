@@ -3,6 +3,7 @@ import NavbarPrueba from "../../components/navbar/navbarprueba";
 import Lateral1 from "../../components/navbar/lateral1";
 import LinesChart from "../../components/graficos/grafico1";
 import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 
 export default function Dashboard() {
@@ -33,6 +34,7 @@ export default function Dashboard() {
         </div>
         
       </div>
+      <ChatBot/>
       <Footer1/>
     </>
   );

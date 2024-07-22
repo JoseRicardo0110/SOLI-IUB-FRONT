@@ -6,6 +6,7 @@ import Table8 from "../../components/table/table8";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 const url = "https://soli-iub-fastapi.onrender.com";
 
 
@@ -72,7 +73,7 @@ export default function EstudianteVeEstadiSolicitud() {
                       <div class="modal-header modo">
                         <h5 class="modal-title" id="exampleModalLabel"><b>ID de Tu solicitud:</b> {Usuarios.idSolicitud} </h5>
                         <h5 class="modal-title" id="exampleModalLabel"><b>Tipo de solicitud: </b>{Usuarios.valor}</h5>
-                        <h5 class="estado2 text-light "><b>{Usuarios.estado}</b></h5>
+                        <h5 class="estado2   text-light "><b>{Usuarios.estado}</b></h5>
                       </div>
                       <div class="raya"></div>
                       <div class="caja">
@@ -117,7 +118,7 @@ export default function EstudianteVeEstadiSolicitud() {
                       <div class="modal-header modo">
                         <h5 class="modal-title" id="exampleModalLabel"><b>ID de Tu solicitud: </b>{Usuarios.idSolicitud}</h5>
                         <h5 class="modal-title" id="exampleModalLabel"><b>Tipo de solicitud: </b>{Usuarios.valor}</h5>
-                        <h5 class="estado text-light"><b>{Usuarios.estado}</b></h5>
+                        <h5 class="estado2 text-light"><b>{Usuarios.estado}</b></h5>
                       </div>
                       <div class="raya"></div>
                       
@@ -145,6 +146,7 @@ export default function EstudianteVeEstadiSolicitud() {
           
           </div>
       </div> 
+      <ChatBot/>
       <Footer1/>
     </div>  
   );

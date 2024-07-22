@@ -3,6 +3,7 @@ import Footer1 from "../../components/footer/footer";
 import Formulario2 from "../../components/formulario/formulario2";
 import Lateral2 from "../../components/navbar/lateral2";
 import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 export default function EstudianteVeEstadiSolicitud() {
   return (
@@ -16,6 +17,7 @@ export default function EstudianteVeEstadiSolicitud() {
             <Formulario2/>
           </div>
       </div>
+      <ChatBot/>
       <Footer1/>
     </div>
   );

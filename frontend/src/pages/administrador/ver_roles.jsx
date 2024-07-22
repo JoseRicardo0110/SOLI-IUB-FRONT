@@ -3,6 +3,7 @@ import Lateral3 from "../../components/navbar/lateral3";
 import Footer1 from "../../components/footer/footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 const url = "https://soli-iub-fastapi.onrender.com";
 
@@ -116,7 +117,7 @@ export default function Ver_roles() {
   return (
     <>
       <NavbarPrueba />
-      <div className="todo fondoZ2">
+      <div className="todo fondoZ">
         <div className="p-0 lr">
           <Lateral3 />
         </div>
@@ -277,11 +278,13 @@ export default function Ver_roles() {
                 >
                   Crear Rol
                 </button>
+                
               </div>
             </div>
           </div>
         </div>
       </div>
+      <ChatBot/>
       <Footer1 />
     </>
   );

@@ -5,6 +5,7 @@ import Footer1 from "../../components/footer/footer";
 import Table3 from "../../components/table/tabla3";
 import NavbarPrueba from "../../components/navbar/navbarprueba";
 import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 
 export default function Solicitudes_sin_asignar() {
@@ -27,6 +28,7 @@ export default function Solicitudes_sin_asignar() {
         </div>
         
       </div>
+      <ChatBot/>
       <Footer1/>
       </>
       

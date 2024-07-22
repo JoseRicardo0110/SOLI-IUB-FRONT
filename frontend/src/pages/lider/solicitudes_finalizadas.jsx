@@ -3,6 +3,7 @@ import NavbarPrueba from "../../components/navbar/navbarprueba";
 import Lateral1 from "../../components/navbar/lateral1";
 import Table5 from "../../components/table/table5";
 import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 
 export default function Solicitudes_finalizadas() {
@@ -18,6 +19,7 @@ export default function Solicitudes_finalizadas() {
                 <Table5/>
             </div>
             </div>
+            <ChatBot/>
             <Footer1/>
         </>
     

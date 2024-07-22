@@ -3,6 +3,7 @@ import Table4 from "../../components/table/table4";
 import NavbarPrueba from "../../components/navbar/navbarprueba";
 import Lateral1 from "../../components/navbar/lateral1";
 import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 
 
 export default function Solicitudes_pendientes() {
@@ -21,6 +22,7 @@ export default function Solicitudes_pendientes() {
           </div>
         
         </div>
+        <ChatBot/>
         <Footer1/>
       </>
       
