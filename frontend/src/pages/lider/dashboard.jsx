@@ -15,23 +15,7 @@ export default function Dashboard() {
         <div class=" p-0 lr">
           <Lateral3/>
         </div>
-        <div class=" p-5">
-          <div class="row">
-            <div class="col-6">
-                  <p className="m-2"><b>Ejemplo #1: </b>Gráfico de líneas básico</p>
-                  <div className="bg-light mx-auto px-2 ms-5 mt-3 mb-5 border border-2 border-primary" style={{width:"500px", height:"230px"}}>
-                      <LinesChart/>
-                  </div>
-              </div>
-              <hr className="mt-3 mb-2"/>
-              <div class="col-6">
-                  <p className="m-2"><b>Ejemplo #2: </b>Gráfico de barras</p>
-                  <div className="bg-light mx-auto px-2  ms-5 mt-3 mb-5 border border-2 border-primary" style={{width:"500px", height:"225px"}}>
-                      
-                  </div>
-              </div>
-          </div>
-        </div>
+        <iframe title="TABLA SOLICITUDES" width="1200" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiNTI3NGVjYWUtMzE4Yy00OWVhLWIxOTItZDZhMjQyNzNhNzY0IiwidCI6IjFlOWFhYmU4LTY3ZjgtNGYxYy1hMzI5LWE3NTRlOTI0OTlhZSIsImMiOjR9" frameborder="5" allowFullScreen="true"></iframe>
         
       </div>
       <ChatBot/>
