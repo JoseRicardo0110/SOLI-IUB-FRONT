@@ -66,7 +66,7 @@ export default function Formulario2() {
                                         class="btn btn-primary w-100  mt-4 fw-semibold shadow-sm"
                                         type="button"
                                         onClick={handlelogin}>
-                                        Iniciar sesión
+                                        Crear solicitud
                                     </button>
                                     </div>
                                 </form>   
