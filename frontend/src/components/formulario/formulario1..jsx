@@ -84,11 +84,6 @@ export default function Formulario1() {
                   onError={onFailure}
                 />
               </div>
-              {loggedIn && (
-                <div className="profile">
-                  <h3 class="text-light ms-2" >Bienvenido {user.name}</h3>
-                </div>
-              )}
             </form>
           </div>
         </div>
