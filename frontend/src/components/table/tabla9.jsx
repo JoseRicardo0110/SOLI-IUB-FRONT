@@ -104,7 +104,7 @@ function Table9() {
       label:"Telefono"
     },
     {
-      name: "nombrerol",
+      name: "descripcion",
       label:"Rol"
     }
   ];
