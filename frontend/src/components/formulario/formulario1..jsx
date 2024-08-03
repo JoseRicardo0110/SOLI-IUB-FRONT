@@ -47,12 +47,12 @@ export default function Formulario1() {
       <div className="bgl_login pt-4 pb-4">
         <div className="fondo conlogin shadow">
           <div className="">
-            <div className="fs-1 tituloformulogin fw-bold mt-5 text-light">
+            <div className="fs-1 tituloformulogin p-2 fw-bold mt-5 text-primary">
               <p>Inicio de sesion</p>
             </div>
             <form className="posicion_imput2">
               <div className="tamano_imput posicion_imput1">
-                <label className="form-label text-light">CORREO</label>
+                <label className="form-label text-primary">CORREO</label>
                 <input
                   className="form-control bg-light"
                   type="text"
@@ -61,7 +61,7 @@ export default function Formulario1() {
                 />
               </div>
               <div className="mt-3 tamano_imput">
-                <label className="form-label text-light">CONTRASEÑA</label>
+                <label className="form-label text-primary">CONTRASEÑA</label>
                 <input
                   className="form-control bg-light"
                   type="password"
