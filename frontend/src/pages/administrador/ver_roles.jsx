@@ -134,9 +134,9 @@ export default function Ver_roles() {
               </button>
             </div>
             {users.map((user) => (
-              <div key={user.IdRol} className="col-4">
-                <div className="card carta1 ms-4 mb-2">
-                  <div className="card-body">
+              <div key={user.IdRol} className="col-4 ">
+                <div className="card  ms-4 mb-2">
+                  <div className="card-body cuerpote">
                     <h4 className="card-title">{user.NombreRol}</h4>
                     <p className="card-text">{user.DescripcionRol}</p>
                   </div>
@@ -164,7 +164,7 @@ export default function Ver_roles() {
           </div>
         </div>
 
-        {/* Modal para ver modulos permitidos */}
+        
         <div
           className="modal fade"
           id="exampleModal"
@@ -224,7 +224,7 @@ export default function Ver_roles() {
           </div>
         </div>
 
-        {/* Modal para agregar nuevo rol */}
+       
         <div
           className="modal fade"
           id="addRoleModal"
