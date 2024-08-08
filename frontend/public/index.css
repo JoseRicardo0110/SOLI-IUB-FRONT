@@ -208,6 +208,9 @@ hr {
    display: block;
    text-align: center;
 }
+.acmboton{
+  text-align: end;
+}
 
 .posicion_imput2{
   

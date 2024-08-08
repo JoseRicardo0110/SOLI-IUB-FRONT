@@ -187,18 +187,31 @@ export default function Ver_roles() {
                 ></button>
               </div>
               <div className="modal-body">
-                <ul id="lista-modulos">
+                <ul class="list-group list-group-flush" id="lista-modulos ">
                   {modules.map((modulo) => (
-                    <li key={modulo.id}>
-                      {modulo.modulos}{" "}
-                      <button 
-                        className="btn btn-danger btn-sm ms-2 mb-1" 
-                        onClick={() => handleRemoveModule(modulo.modulo)}
-                      >
-                        Quitar
-                      </button>
+                    
+                    <li class="list-group-item " key={modulo.id}>
+                      <div class="row ">
+                        <div class=" col-6"> 
+                          <p>{modulo.modulos}{" "}</p>
+                        </div>
+                        <div class=" col-6 acmboton">
+                          <button 
+                            className="btn btn-danger btn-sm me-0 mb-1 " 
+                            onClick={() => handleRemoveModule(modulo.modulo)}
+                          >
+                            Quitar
+                          </button>
+                        </div>
+                      </div>
+                      
+                     
+                      
+                      
+                     
                     </li>
                   ))}
+                   
                 </ul>
                 <hr />
                 <h5>Agregar modulo</h5>
