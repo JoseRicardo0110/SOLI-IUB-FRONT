@@ -69,7 +69,7 @@ export default function Formulario1() {
                   id="user_contrasena"
                 />
               </div>
-              <div className="mt-4 tamano_imput">
+              <div className="mt-4 tamano_imput aboton">
                 <button
                   className="btn btn-primary w-100 mt-4 fw-semibold shadow-sm"
                   type="button"
@@ -77,13 +77,14 @@ export default function Formulario1() {
                 >
                   Iniciar sesión
                 </button>
+                <div className='btn mt-3'>
+                  <GoogleLogin
+                    onSuccess={onSuccess}
+                    onError={onFailure}
+                  />
+                </div>
               </div>
-              <div className='btn'>
-                <GoogleLogin
-                  onSuccess={onSuccess}
-                  onError={onFailure}
-                />
-              </div>
+              
             </form>
           </div>
         </div>

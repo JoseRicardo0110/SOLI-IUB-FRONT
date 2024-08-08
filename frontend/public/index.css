@@ -204,6 +204,10 @@ hr {
   
   height: 150px;
 }
+.aboton{
+   display: block;
+   text-align: center;
+}
 
 .posicion_imput2{
   
