@@ -19,6 +19,7 @@ import EstudianteVeHistorial from './pages/estudiante/estudianteVeHistorial.jsx'
 import Ver_usuarios from './pages/administrador/ver_usuarios.jsx';
 import Ver_roles from './pages/administrador/ver_roles.jsx';
 import TUTORIAS from './pages/administrador/tutorias.jsx';
+import Reportes from './pages/administrador/reportes.jsx';
 
 
 
@@ -42,6 +43,7 @@ export default function App() {
           <Route path='/Solicitudes_finalizadas' element={<ProtectedRoute><Solicitudes_finalizadas/></ProtectedRoute>} />
           <Route path='/asignado_a_ti' element={<ProtectedRoute><Asignado_a_ti/></ProtectedRoute>} />
           <Route path='/ver_usuarios' element={<ProtectedRoute><Ver_usuarios/></ProtectedRoute>} />
+          <Route path='/reportes' element={<ProtectedRoute><Reportes/></ProtectedRoute>} />
           <Route path='/ver_roles' element={<ProtectedRoute><Ver_roles/></ProtectedRoute>} />
           <Route path='/finalizados_por_ti' element={<ProtectedRoute><Finalizados_por_ti/></ProtectedRoute>} />
           <Route path='/tutorias' element={<ProtectedRoute><TUTORIAS/></ProtectedRoute>} />

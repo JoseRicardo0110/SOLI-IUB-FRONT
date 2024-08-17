@@ -405,7 +405,7 @@ background: linear-gradient(0deg, rgb(12, 105, 204) 0%, rgba(40,126,221,0.176995
 }
 .fondoZ3{
   background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(18,107,223,1) 48%, rgba(255,255,255,0.7540266106442577) 100%);
+background: linear-gradient(0deg, rgba(18,107,223,1) 48%, rgba(18,107,223,1) 48%, rgba(255,255,255,0.7540266106442577) 100%);
 }
 .celda{
   
