@@ -16,16 +16,25 @@ const Reportes1 = () => {
             area_id: areaId,
         };
 
-        const response = await axios.post("https://soli-iub-fastapi.onrender.com/report", params, {
-            responseType: 'blob', // importante para que maneje la respuesta como archivo
-        });
-
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'report.xlsx'); // nombre del archivo
-        document.body.appendChild(link);
-        link.click();
+        try {
+          const response = await axios.post("https://soli-iub-fastapi.onrender.com/report", {
+              report_type: reportType,
+              start_date: startDate,
+              end_date: endDate,
+              area_id: areaId,
+          }, {
+              responseType: 'blob',
+          });
+      
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', 'report.xlsx');
+          document.body.appendChild(link);
+          link.click();
+      } catch (error) {
+          console.error('Error al descargar el reporte:', error);
+      }
     };
 
     return (
