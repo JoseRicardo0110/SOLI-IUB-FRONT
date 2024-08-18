@@ -9,33 +9,34 @@ const Reportes1 = () => {
     const [areaId, setAreaId] = useState("");
 
     const handleDownload = async () => {
-        const params = {
-            report_type: reportType,
-            start_date: startDate,
-            end_date: endDate,
-            area_id: areaId,
-        };
-
-        try {
-          const response = await axios.post("https://soli-iub-fastapi.onrender.com/report", {
-              report_type: reportType,
-              start_date: startDate,
-              end_date: endDate,
-              area_id: areaId,
-          }, {
-              responseType: 'blob',
-          });
-      
+      const params = {
+          report_type: reportType,
+          start_date: startDate,
+          end_date: endDate,
+          area_id: areaId || null,  // Asegúrate de enviar null si no hay valor en areaId
+      };
+  
+      try {
+          const response = await axios.post(
+              "https://soli-iub-fastapi.onrender.com/report",
+              params,
+              {
+                  responseType: 'blob', // importante para que maneje la respuesta como archivo
+              }
+          );
+  
           const url = window.URL.createObjectURL(new Blob([response.data]));
           const link = document.createElement('a');
           link.href = url;
-          link.setAttribute('download', 'report.xlsx');
+          link.setAttribute('download', 'report.xlsx'); // nombre del archivo
           document.body.appendChild(link);
           link.click();
       } catch (error) {
-          console.error('Error al descargar el reporte:', error);
+          console.error("Error al descargar el reporte:", error);
+          alert("Hubo un error al generar el reporte. Por favor, verifica los datos y vuelve a intentarlo.");
       }
-    };
+  };
+  
 
     return (
         <Container className="mt-5 p-4 border rounded bg-white shadow">
