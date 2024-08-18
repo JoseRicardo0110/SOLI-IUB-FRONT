@@ -482,3 +482,18 @@ background: linear-gradient(0deg, rgba(18,107,223,1) 48%, rgba(18,107,223,1) 48%
   margin-top: 5%;
   width: 18rem;
 }
+.main-container {
+  height: 100vh;
+  overflow: hidden; /* Para evitar que se muestre el scroll fuera del área de contenido */
+}
+
+.sidebar {
+  height: 100%;
+  overflow-y: auto; /* Permitir el scroll en la barra lateral si el contenido es mayor */
+}
+
+.content-area {
+  height: 100%;
+  overflow-y: auto; /* Permitir el scroll en el área de contenido */
+}
+
