@@ -31,8 +31,11 @@ const Reportes1 = () => {
             link.setAttribute('download', 'report.xlsx'); // nombre del archivo
             document.body.appendChild(link);
             link.click();
+            link.remove(); // Remover el link del DOM
+
         } catch (error) {
             console.error("Error al descargar el reporte:", error);  // Debug print
+            alert("Ocurrió un error al descargar el reporte. Revisa la consola para más detalles.");
         }
     };
 
