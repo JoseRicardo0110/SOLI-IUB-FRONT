@@ -16,8 +16,7 @@ const Reportes1 = () => {
             area_id: areaId,
         };
 
-        const response = await axios.get("https://soli-iub-fastapi.onrender.com/report", {
-            params: params,
+        const response = await axios.post("https://soli-iub-fastapi.onrender.com/report", params, {
             responseType: 'blob', // importante para que maneje la respuesta como archivo
         });
 
