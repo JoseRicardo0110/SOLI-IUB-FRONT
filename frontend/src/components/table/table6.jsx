@@ -37,7 +37,7 @@ function Table6() {
         console.log(correo);
         var envio = await API.responder(id, total,correo, FechaUltimaModificacion);
         console.log(envio);
-
+        alert('Haz dado respuesta a la solicitud: '+ id);
         /* API.asignate(id,idusuario);*/
         window.location.href = window.location.href;
     };
@@ -54,7 +54,7 @@ function Table6() {
         console.log(correo);
         var envio = await API.finalizar_solicitud(id,FechaUltimaModificacion,correo);
         console.log(envio);
-
+        alert('Haz finalizado la solicitud: '+ id);
         window.location.href = window.location.href;
 
     };
