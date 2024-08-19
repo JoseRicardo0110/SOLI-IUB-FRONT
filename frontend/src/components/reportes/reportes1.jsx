@@ -8,6 +8,13 @@ const Reportes1 = () => {
     const [reportType, setReportType] = useState("");
     const [areaId, setAreaId] = useState("");
 
+    const areas = [
+        { id: 1, nombre: 'Ingeniería - Telemática' },
+        { id: 2, nombre: 'Ingeniería - Técnico Electromecánico' },
+        { id: 3, nombre: 'Ciencias Económicas y Administrativas - Administración de Empresas' },
+        { id: 4, nombre: 'Ciencias Económicas y Administrativas - Administración de Negocios Internacionales' },
+    ];
+
     const handleDownload = async () => {
         const params = {
             report_type: reportType,
@@ -39,7 +46,6 @@ const Reportes1 = () => {
         }
     };
     
-
     return (
         <Container className="mt-5 p-4 border rounded bg-white shadow">
             <h2 className="text-center text-primary mb-4">Generar Reportes</h2>
@@ -86,13 +92,17 @@ const Reportes1 = () => {
 
                 {["pendientes_area", "finalizadas_area"].includes(reportType) && (
                     <Form.Group controlId="areaId" className="mb-3">
-                        <Form.Label className="text-primary">ID del Área</Form.Label>
+                        <Form.Label className="text-primary">Área</Form.Label>
                         <Form.Control
-                            type="text"
-                            placeholder="Ingresa el ID del Área"
+                            as="select"
                             value={areaId}
                             onChange={(e) => setAreaId(e.target.value)}
-                        />
+                        >
+                            <option value="">Selecciona un área</option>
+                            {areas.map(area => (
+                                <option key={area.id} value={area.id}>{area.nombre}</option>
+                            ))}
+                        </Form.Control>
                     </Form.Group>
                 )}
 
