@@ -1,84 +1,153 @@
 import NavbarPrueba2 from "../../components/navbar/navbarprueba2";
 import Footer1 from "../../components/footer/footer";
-import Lateral3 from "../../components/navbar/lateral3";
-import ChatBot from "../../components/chat1/CHATBOT";
+import Lateral2 from "../../components/navbar/lateral2";
+import Table2 from "../../components/table/table2";
+import Table8 from "../../components/table/table8";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Button, Collapse, Input } from 'reactstrap';
+import Lateral3 from "../../components/navbar/lateral3";
+import ChatBot from "../../components/chat1/CHATBOT";
 const url = "https://soli-iub-fastapi.onrender.com";
 
+
 export default function EstudianteVeEstadiSolicitud() {
-  const [users, setUsers] = useState([]);
-  const [filter, setFilter] = useState("");
-  const [expandedRequestId, setExpandedRequestId] = useState(null);
 
-  const idusuario = parseInt(localStorage.getItem("usuario"));
-  
-  useEffect(() => {
-    const fetchRequests = async () => {
-      try {
-        const response = await axios.get(`${url}/get_Solicitud/${idusuario}`);
-        setUsers(response.data);
-      } catch (error) {
+  const [userss, setUserss] = useState([]);
+
+    var idusuario = parseInt(localStorage.getItem("usuario"));
+    console.log(idusuario);
+    var get_SolicitudesPendientesPorIdPersona = async (idUsuario) => {
+        try {
+            const users = await axios.get(`${url}/get_SolicitudesPendientesPorIdUsuario/${idUsuario}`);
+            const dato = await users.data;
+            console.log(dato);
+            console.log("toy dentro");
+            setUserss(dato);
+        } catch (error) {
         console.error(error);
-      }
+        }
     };
-    fetchRequests();
-  }, [idusuario]);
 
-  const toggleExpand = (id) => {
-    setExpandedRequestId(expandedRequestId === id ? null : id);
-  };
+    
+    
+    useEffect(() => {
+        get_SolicitudesPendientesPorIdPersona(idusuario);
+    }, []);
 
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
-  };
 
-  const filteredUsers = users.filter(user => 
-    user.Asunto.toLowerCase().includes(filter.toLowerCase()) ||
-    user.idSolicitud.toString().includes(filter)
-  );
+  const [users, setUsers] = useState([]);
 
+    var idusuario = parseInt(localStorage.getItem("usuario"));
+
+    console.log(idusuario);
+    var get_Solicitud = async (idUsuario) => {
+        try {
+            const users = await axios.get(`${url}/get_Solicitud/${idUsuario}`);
+            const dato = await users.data;
+            console.log(dato);
+            console.log("toy dentro");
+            setUsers(dato);
+        } catch (error) {
+        console.error(error);
+        }
+    };
+
+    
+    
+    useEffect(() => {
+        get_Solicitud(idusuario);
+    }, []);
   return (
-    <div className="fondoZ2">
-      <NavbarPrueba2 />
-      <div className="todo">
-        <div className="p-0">
-          <Lateral3 />
-        </div>
-        <div className="ld">
-          <Input
-            type="text"
-            placeholder="Filtrar por palabra clave o ID de solicitud"
-            value={filter}
-            onChange={handleFilterChange}
-            className="mb-3"
-          />
-          {filteredUsers.map((user) => (
-            <div key={user.idSolicitud} className="mb-2 soli bg-light p-2">
-              <div className="d-flex justify-content-between align-items-center">
-                <div><b>ID de Tu solicitud:</b> {user.idSolicitud}</div>
-                <div><b>Tipo de solicitud:</b> {user.valor}</div>
-                <div className={`estado2 text-light ${user.estado === 'pendiente' ? 'bg-primary' : 'bg-success'}`}><b>{user.estado}</b></div>
-                <Button color="primary" onClick={() => toggleExpand(user.idSolicitud)}>
-                  {expandedRequestId === user.idSolicitud ? 'Ver menos' : 'Ver más'}
-                </Button>
-              </div>
-              <Collapse isOpen={expandedRequestId === user.idSolicitud}>
-                <div className="mt-3">
-                  <div><b>Archivo:</b> <a href="#">imagen.jpg</a></div>
-                  <div><b>Asunto:</b> {user.Asunto}</div>
-                  <div><b>Fecha de creación:</b> {user.FechaCreacion}</div>
-                  <div><b>Persona asignada:</b> {user.NombreAsignado}</div>
-                  <div><b>Respuesta:</b> {user.DescripcionRespuesta || "Sin respuesta"}</div>
+    <div class="fondoZ2">
+      <NavbarPrueba2/>
+      <div class="todo ">
+          <div class=" p-0">
+            <Lateral3/>
+          </div>
+          <div class=" ld " >
+          {userss.map((Usuarios) => (
+              <div key={Usuarios.id}>
+                <div class="mb-1">
+                <div class=" soli bg-light ">
+                    <div class="">
+                      <div class="modal-header modo">
+                        <h5 class="modal-title" id="exampleModalLabel"><b>ID de Tu solicitud:</b> {Usuarios.idSolicitud} </h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Tipo de solicitud: </b>{Usuarios.valor}</h5>
+                        <h5 class="estado2   text-light "><b>{Usuarios.estado}</b></h5>
+                      </div>
+                      <div class="raya"></div>
+                      <div class="caja">
+                        <div class="modal-body mt-3 modo ">
+                          <h5><b>Archivo</b></h5>
+                          <a class="nav-link " href="#">imgen.jpg</a>
+                          
+                        </div>
+                        <div class="modal-body mt-3 mb-2 modo ">
+                        <h5><b>Asunto</b></h5>
+                        <p class="">{Usuarios.Asunto}</p>
+                       
+                      </div>
+                      
+                      </div>
+                      <b class="ps-4"><b>Fecha de creacion:</b> {Usuarios.FechaCreacion}</b>
+                      <div class="raya"></div>
+                      <div class="caja">
+                        <div class="modal-body mt-3 modo ">
+                          <h5><b>Persona asignada</b></h5>
+                          <p class="">{Usuarios.NombreAsignado}</p>
+                          
+                        </div>
+                        
+                        <div class="modal-body mt-3 mb-2 modo ">
+                        <h5><b>Respuesta</b></h5>
+                        <p class="">{Usuarios.DescripcionRespuesta}</p>
+                       
+                      </div>
+                      
+                      </div>
+                    </div>
                 </div>
-              </Collapse>
-            </div>
-          ))}
-        </div>
-      </div>
-      <ChatBot />
-      <Footer1 />
-    </div>
+                </div>
+              </div>
+            ))}
+          {users.map((Usuarios) => (
+              <div key={Usuarios.id}>
+                <div class="mb-1">
+                <div class=" soli bg-light ">
+                    <div class="">
+                      <div class="modal-header modo">
+                        <h5 class="modal-title" id="exampleModalLabel"><b>ID de Tu solicitud: </b>{Usuarios.idSolicitud}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Tipo de solicitud: </b>{Usuarios.valor}</h5>
+                        <h5 class="estado2 text-light"><b>{Usuarios.estado}</b></h5>
+                      </div>
+                      <div class="raya"></div>
+                      
+                      <div class="raya"></div>
+                      <div class="caja">
+                        <div class="modal-body mt-3 modo ">
+                          <h5><b>Archivo</b></h5>
+                          <a class="nav-link " href="#">imgen.jpg</a>
+                          
+                        </div>
+                        
+                        <div class="modal-body mt-3 mb-2 modo ">
+                        <h5><b>Asunto</b></h5>
+                        <p class="">{Usuarios.Asunto}</p>
+                       
+                      </div>
+                      
+                      </div>
+                      <b class="ps-4">Fecha de creacion: {Usuarios.FechaCreacion}</b>
+                    </div>
+                </div>
+                </div>
+              </div>
+            ))}
+          
+          </div>
+      </div> 
+      <ChatBot/>
+      <Footer1/>
+    </div>  
   );
 }
