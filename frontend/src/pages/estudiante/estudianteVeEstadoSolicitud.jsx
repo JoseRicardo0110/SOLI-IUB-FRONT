@@ -53,10 +53,10 @@ export default function EstudianteVeEstadiSolicitud() {
           {[...userss, ...users].map((Usuarios) => (
             <div key={Usuarios.idSolicitud} className="soli bg-light p-3 mb-2">
               <div className="d-flex justify-content-between align-items-center">
-                <div><b>ID Solicitud:</b> {Usuarios.idSolicitud}</div>
+                <div><b>N° Solicitud:</b> {Usuarios.idSolicitud}</div>
                 <div><b>Tipo:</b> {Usuarios.valor}</div>
                 <div className={`badge ${Usuarios.estado === 'pendiente' ? 'bg-primary' : 'bg-success'}`}>{Usuarios.estado}</div>
-                <Button color="link" onClick={() => toggleExpand(Usuarios.idSolicitud)}>
+                <Button class='link-dark' color="link" onClick={() => toggleExpand(Usuarios.idSolicitud)}>
                   {expandedRequestId === Usuarios.idSolicitud ? 'Ver menos' : 'Ver más'}
                 </Button>
               </div>
